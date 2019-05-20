@@ -1,0 +1,107 @@
+
+<div class="py-3 container">
+  <div class="card">
+
+    <div class="card-header">
+
+      <div class="float-right">
+        <ul *ngIf="canEdit == true" >
+          <img src="assets/iconoEngranaje.jpg" width="35" height="35" class="pr-2 d-inline-block  img-circle" alt="configuration-icon" data-toggle="modal" data-target="#updateProjectModal">
+          <button class="btn btn-danger text-white btn-sm" (click)="removeProject(project.project_id)">Delete</button>
+        </ul>
+      </div>
+      <h2 class="card-text">{{project.tittle}}</h2>
+
+
+    </div>
+
+    <div class="card-body">
+      <h5 class="card-title"></h5>
+      <p class="card-text">{{project.description}}</p>
+      <p class="card-text">We need this profiles:</p>
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Programmers number
+          <span class="badge badge-primary badge-pill">{{project.NProgrammers}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Designers number
+          <span class="badge badge-primary badge-pill">{{project.NDesigners}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Animators number
+          <span class="badge badge-primary badge-pill">{{project.NAnimators}}</span>
+        </li>
+      </ul>
+      <div class = "pt-4 card-footer">
+        <ul *ngIf="inProject == true" >
+          <button class="btn btn-danger text-white float-right" (click)="removeUserInProject(project.project_id)">Sign out</button>
+        </ul>
+        <ul *ngIf="inProject == false" >
+          <button  class="btn btn-danger text-white float-right" [disabled]="checkIfCanRegister(user_type,project.NProgrammers,project.NDesigners,project.NAnimators)" (click)="registerUserInProject(project.project_id)">Sign in!</button>
+        </ul>
+        <h5 class="card-text">The inscription expires in {{project.limit_date}}</h5>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="modal fade" id="updateProjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form [formGroup]="projectForm" (ngSubmit)="updateProject(project.project_id)">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">¿Que desea actualizar?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label for="inputTittle">tittle</label>
+          <input type="text" class="form-control" formControlName="tittle" id="inputTittle" placeholder="{{project.tittle}}">
+        </div>
+        <div class="form-group">
+          <label for="inputDescription">description</label>
+          <input type="text" class="form-control" formControlName="description" id="inputDescription" value="{{project.description}}">
+        </div>
+        <div class="form-group">
+          <label for="inputNProgrammers">NProgrammers
+            <input type="number" class="form-control" formControlName="NProgrammers" id="inputNProgrammers" placeholder="{{project.NProgrammers}}">
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="inputNAnimators">NAnimators
+            <input type="number" class="form-control" formControlName="NAnimators" id="inputNAnimators" placeholder="{{project.NAnimators}}">
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="inputNAnimators">NDesigners
+            <input type="number" class="form-control" formControlName="NDesigners" id="inputNDesigners" placeholder="{{project.NDesigners}}">
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="inputLimit_date">limit_date</label>
+          <input type="datetime-local" class="form-control" formControlName="limit_date" id="inputLimit_date" placeholder="{{project.limit_date}}">
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+        <button type="submit" class="btn btn-primary"  (click)="updateProject(project.project_id,project.creator_id)" data-dismiss="modal">Guardar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+

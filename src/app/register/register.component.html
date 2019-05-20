@@ -1,0 +1,37 @@
+<div class="container p-1">
+  <div class="row justify-content-center mt-4">
+    <div class="col-6">
+      <h3>Registrarse</h3>
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="form-group row">
+          <label for="inputName" class="col-sm-3 col-form-label">Name</label>
+          <input type="text" class="form-control" formControlName="name" id="inputName" placeholder="Escribe tu nombre">
+        </div>
+        <div class="form-group row">
+          <label for="inputSurname" class="col-sm-3 col-form-label">Surname</label>
+          <input class="form-control " type="text" formControlName="surname" id="inputSurname" placeholder="Escribe tu apellido">
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-3 col-form-label">Contraseña</label>
+          <input type="password" class="form-control" formControlName="password" id="inputPassword" placeholder="Contraseña">
+        </div>
+        <div class="form-group row">
+          <label for="inputMail" class="col-sm-3 col-form-label">Mail</label>
+          <input type="text" class="form-control" formControlName="mail" id="inputMail" placeholder="Mail">
+        </div>
+
+        <div class="form-group row">
+          <label for="inputUserType">User type</label>
+
+          <select class="form-control" formControlName="user_type" id="inputUserType">Tipo de grado
+            <option value=1>Programador</option>
+            <option value=2>Diseñador</option>
+            <option value=3>Animador</option>
+
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary float-right" [disabled]="!userForm.valid" >Register</button>
+      </form>
+    </div>
+  </div>
+</div>

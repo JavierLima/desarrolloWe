@@ -1,0 +1,26 @@
+
+
+
+<!-- Marketing messaging and featurettes
+================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+
+
+<div class="container">
+
+    <h1>Projects</h1>
+    <ng-container *ngFor="let project of projects;">
+        <ul *ngIf="project.project_id != null">
+            <app-project [project]="project" [canEdit]="canEdit" [inProject]="inProject"></app-project>
+        </ul>
+
+    </ng-container>
+
+</div>
+
+
+
+
+
+
+

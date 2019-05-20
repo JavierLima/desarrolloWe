@@ -1,0 +1,47 @@
+<div class="mb-5 pb-5 container" >
+  <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+    <h3>Create Project</h3>
+    <div class="form-group">
+      <label for="inputTittle">tittle</label>
+      <input type="text" class="form-control" formControlName="tittle" id="inputTittle" placeholder="Escriba el titulo">
+    </div>
+    <div class="form-group">
+      <label for="inputDescription">description</label>
+      <input type="text" class="form-control" formControlName="description" id="inputDescription" placeholder="Descripcion...">
+    </div>
+    <div class="form-group">
+      <label for="inputNProgrammers">NProgrammers</label>
+        <input type="number" class="form-control" formControlName="NProgrammers" id="inputNProgrammers" placeholder="Numero programadores">
+    </div>
+    <div class="form-group">
+      <label for="inputNAnimators">NAnimators</label>
+        <input type="number" class="form-control" formControlName="NAnimators" id="inputNAnimators" placeholder="Numero animadores">
+    </div>
+    <div class="form-group">
+      <label for="inputNAnimators">NDesigners</label>
+        <input type="number" class="form-control" formControlName="NDesigners" id="inputNDesigners" placeholder="Numero diseñadores">
+    </div>
+    <div class="form-group">
+      <label for="inputLimit_date">limit_date</label>
+      <input type="datetime-local" class="form-control" formControlName="limit_date" id="inputLimit_date" placeholder="año-mes-dia:hora:minutos:segundos (2019-04-04:23:59:59)">
+    </div>
+    <button type="button" class="btn btn-primary float-right" data-toggle="modal" [disabled]="!projectForm.valid" data-target="#secureModal">Crear</button>
+
+  <div class="modal fade" id="secureModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Está seguro que desea crearlo?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button type="submit" class="btn btn-primary"  (click)="onSubmit()" data-dismiss="modal">Si</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
